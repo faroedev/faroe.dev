@@ -1,0 +1,88 @@
+{
+    "name": "Faroe",
+    "description": "Faroe is an open source authentication server packaged as a Go library.",
+    "domain": "https://example.com",
+
+    "sidebar": [
+        {
+            "title": "Faroe server",
+            "pages": [
+                ["Overview", "/faroe-server/overview"],
+                ["Setup", "/faroe-server/setup"],
+                ["Quick-start guide", "/faroe-server/quickstart-guide"]
+            ]
+        },
+        {
+            "title": "User server",
+            "pages": [
+                ["Overview", "/user-server/overview"],
+                ["Implement with Go", "/user-server/implement-with-go"],
+                [
+                    "Implement with JavaScript",
+                    "/user-server/implement-with-javascript"
+                ]
+            ]
+        },
+        {
+            "title": "Faroe server actions",
+            "pages": [
+                ["Client libraries", "/faroe-server-actions/client-libraries"],
+                ["Sign up", "/faroe-server-actions/sign-up"],
+                ["Sign in", "/faroe-server-actions/sign-in"],
+                ["Sessions", "/faroe-server-actions/sessions"],
+                [
+                    "Update user email address",
+                    "/faroe-server-actions/update-user-email-address"
+                ],
+                [
+                    "Update user password",
+                    "/faroe-server-actions/update-user-password"
+                ],
+                ["Delete user", "/faroe-server-actions/delete-user"],
+                [
+                    "Reset user password",
+                    "/faroe-server-actions/reset-user-password"
+                ],
+                ["Rate limits", "/faroe-server-actions/rate-limits"],
+                ["Captchas", "/faroe-server-actions/captchas"]
+            ]
+        },
+        {
+            "title": "Concepts",
+            "pages": [
+                ["Users", "/concepts/users"],
+                ["Signups", "/concepts/signups"],
+                ["Signins", "/concepts/signins"],
+                ["Sessions", "/concepts/sessions"],
+                [
+                    "User email address updates",
+                    "/concepts/user-email-address-updates"
+                ],
+                ["User password updates", "/concepts/user-password-updates"],
+                ["User deletions", "/concepts/user-deletions"],
+                ["User password resets", "/concepts/user-password-resets"],
+                ["Actions", "/concepts/actions"]
+            ]
+        },
+        {
+            "title": "References",
+            "pages": [
+                [
+                    "Action invocation endpoint",
+                    "/references/action-invocation-endpoint"
+                ],
+                ["Faroe server actions", "/references/faroe-server-actions"],
+                ["User server actions", "/references/user-server-actions"],
+                ["Go packages", "/references/go-packages"],
+                ["JavaScript references", "/references/javascript-packages"]
+            ]
+        },
+        {
+            "title": "Links",
+            "pages": [
+                ["GitHub Repository", "https://github.com/faroedev/faroe"]
+            ]
+        }
+    ],
+    "asset_hashing": true
+}

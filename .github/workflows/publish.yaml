@@ -1,0 +1,28 @@
+name: "Publish"
+on: [push]
+
+env:
+  CLOUDFLARE_API_TOKEN: ${{secrets.CLOUDFLARE_API_TOKEN}}
+
+jobs:
+  build-and-deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    if: github.repository == 'faroedev/faroe.dev' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.5.1
+          registry-url: https://registry.npmjs.org
+      - name: Install Malta
+        run: |
+          curl -o malta.tgz -L https://github.com/pilcrowonpaper/malta/releases/latest/download/linux-amd64.tgz
+          tar -xvzf malta.tgz
+      - name: Build
+        run: ../linux-amd64/malta build
+      - name: Install wrangler
+        run: npm i -g wrangler
+      - name: Deploy
+        run: wrangler deploy
