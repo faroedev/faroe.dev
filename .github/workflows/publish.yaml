@@ -21,7 +21,7 @@ jobs:
           curl -o malta.tgz -L https://github.com/pilcrowonpaper/malta/releases/latest/download/linux-amd64.tgz
           tar -xvzf malta.tgz
       - name: Build
-        run: ../linux-amd64/malta build
+        run: linux-amd64/malta build
       - name: Install wrangler
         run: npm i -g wrangler
       - name: Deploy
