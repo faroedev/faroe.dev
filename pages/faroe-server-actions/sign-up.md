@@ -38,7 +38,7 @@ send_signup_email_address_verification_code(
 
 ## Verify email address
 
-Prompt the user for the verification code sent to their inbox and verify it using the [`verify_signup_email_address_verification_code`]() action.
+Prompt the user for the verification code and verify it using the [`verify_signup_email_address_verification_code`]() action.
 
 ```
 verify_signup_email_address_verification_code(

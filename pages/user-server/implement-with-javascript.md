@@ -39,7 +39,7 @@ Example implementations using plain SQL are also available:
 
 With `faroe_user_server.Actions`, create a new [`ActionInvocationRequestResolver`]() instance and create an [action invocation endpoint]().
 
-`ActionInvocationRequestResolver.resolveRequest()` takes a request body of an action request endpoint and returns the response body. It will throw an `Error` if the request body was invalid.
+`ActionInvocationRequestResolver.resolveRequest()` takes a request body of an action request endpoint and returns the response body. It will throw an `Error`if the request is invalid.
 
 ```ts
 const resolver = new faroe_user_server.ActionInvocationRequestResolver(actions);

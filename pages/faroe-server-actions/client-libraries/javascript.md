@@ -23,9 +23,9 @@ const client = new faroe_client.Client(actionInvocationEndpointClient);
 
 const result = await client.createSignup(emailAddress);
 if (!result.ok) {
-    console.log(result.invocationId, result.signup, result.signupToken);
+    console.log(result.actionInvocationId, result.signup, result.signupToken);
 } else {
-    console.log(result.invocationId, result.errorCode);
+    console.log(result.actionInvocationId, result.errorCode);
 }
 ```
 

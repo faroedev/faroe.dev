@@ -26,7 +26,7 @@ type ActionsInterface interface {
 
 Then, create a new [`ActionInvocationRequestResolverStruct`]() instance and create an [action invocation endpoint]().
 
-`ActionInvocationRequestResolver.ResolveRequest()` takes a request body of an action invocation request and returns the response body. It will return an `error` if the request body was invalid.
+`ActionInvocationRequestResolver.ResolveRequest()` takes a request body of an action invocation request and returns the response body. It will return an `error` if the request is invalid.
 
 ```go
 import "github.com/faroedev/go-faroe-user-server"

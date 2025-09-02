@@ -82,6 +82,7 @@ Action types are mapped to the following JSON types:
 -   string: string
 -   bytes: Base64 encoded string (padding required)
 -   boolean: boolean
+-   timestamp: unix timestamp in seconds
 -   object: object
 -   list: array
 -   null: null

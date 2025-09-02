@@ -4,7 +4,7 @@ title: "create_user action"
 
 # create_user action
 
-Create a new user. THe email address should be stored in a case-sensitive format.
+Create a new user. The email address should be stored as-is, with the casing preserved.
 
 ## Parameters
 
@@ -20,6 +20,6 @@ Create a new user. THe email address should be stored in a case-sensitive format
 
 ## Error codes
 
--   `email_address_already_used`
+-   `email_address_already_used`: A user with the exact email address (with same letter casing) already exists.
 -   `internal_conflict`
 -   `internal_error`
