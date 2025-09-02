@@ -1,7 +1,7 @@
 {
     "name": "Faroe",
-    "description": "Faroe is an open source authentication server packaged as a Go library.",
-    "domain": "https://example.com",
+    "description": "Faroe is an open source auth server packaged as a Go library.",
+    "domain": "https://faroe.dev",
 
     "sidebar": [
         {
