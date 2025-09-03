@@ -10,7 +10,7 @@ Install the package from NPM:
 npm i @faroe/client
 ```
 
-Initialize a new `Client` instance with the action invocation endpoint client.
+Initialize a new `Client` instance with the action invocation endpoint client. A method is available for each action. For example, `Client.getSession()` is mapped to the `get_session` action.
 
 See the package [API reference]() for details.
 
