@@ -6,7 +6,7 @@ title: "Faroe server overview"
 
 Faroe is an auth server packaged as a Go package. Specifically, the package provides high-level APIs for creating an auth server.
 
-Like any other auth servers, client side applications can use the server to sign in, sign up, validate session tokens, etc. It covers many aspects of your application, including:
+Like any other auth server, client-side applications can use it to sign in, sign up, validate session tokens, etc. It covers many aspects of your application, including:
 
 -   Sign up with email address verification
 -   Password sign in
