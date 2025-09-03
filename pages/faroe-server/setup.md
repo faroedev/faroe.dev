@@ -31,12 +31,12 @@ type MainStorageInterface interface {
 
 The cache is an optional storage for storing sessions. Adding this will reduce the number of queries to your main storage.
 
-It implements [`CacheInterface`](). Unlike the main storage, it does not have to be strongly consistent. However, the expiration should be strictly enforced.
+It implements [`CacheInterface`](). Unlike the main storage, it does not have to be strongly consistent. However, the TTL should be strictly enforced.
 
 ```go
 type CacheInterface interface {
 	Get(key string) ([]byte, error)
-	Set(key string, value []byte, expiresAt time.Time) error
+	Set(key string, value []byte, ttl time.Duration) error
 	Delete(key string) error
 }
 ```
@@ -102,16 +102,16 @@ type ActionErrorLoggerInterface interface {
 
 ## Email sender
 
-The email sender is an implementation of [`ActionsEmailSenderInterface`]().
+The email sender is an implementation of [`EmailSenderInterface`]().
 
 ```go
-type ActionsEmailSenderInterface interface {
+type EmailSenderInterface interface {
 	SendSignupEmailAddressVerificationCode(emailAddress string, emailAddressVerificationCode string) error
 	SendUserEmailAddressUpdateEmailVerificationCode(emailAddress string, displayName string, emailAddressVerificationCode string) error
 	SendUserPasswordResetTemporaryPassword(emailAddress string, displayName string, temporaryPassword string) error
-	SendUserSignedInNotification(emailAddress string, displayName string) error
-	SendUserPasswordUpdatedNotification(emailAddress string, displayName string) error
-	SendUserEmailAddressUpdatedNotification(emailAddress string, displayName string, newEmailAddress string) error
+	SendUserSignedInNotification(emailAddress string, displayName string, timestamp time.Time) error
+	SendUserPasswordUpdatedNotification(emailAddress string, displayName string, timestamp time.Time) error
+	SendUserEmailAddressUpdatedNotification(emailAddress string, displayName string, newEmailAddress string, timestamp time.Time) error
 }
 ```
 
@@ -123,7 +123,7 @@ Storage entry keys are not globally namespaced. For example, an entry in the rat
 
 Initialize a new [`ActionsStruct`]().
 
-If you do not have a cache, pass [`EmptyBasicKeyValueStorage`]() as the cache.
+If you do not have a cache, pass [`EmptyCache`]() as the cache.
 
 You can provide multiple user password hashing algorithms if your users use different algorithms. The first one will be used for hashing new passwords.
 
