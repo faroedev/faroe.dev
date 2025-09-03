@@ -6,10 +6,22 @@ title: "Faroe server overview"
 
 Faroe is an auth server packaged as a Go package. Specifically, the package provides high-level APIs for creating an auth server.
 
-The server provides most of backend components in a modern auth system, including sessions, email address verification, passwords, rate limiting, email address updates, password updates/resets, and user deletion. It exposes methods that can be called by client-side applications to sign in, validate session tokens, etc.
+Like any other auth servers, client side applications can use the server to sign in, sign up, validate session tokens, etc. It covers many aspects of your application, including:
 
-One important distinction from existing auth servers is that Faroe does not store your users. Users are handled by a dedicated user server. This server exposes a few basic methods to create, get, update, and delete users. Together with the Faroe auth server, they complete a full auth system for your application. This gives you full control of your users, while letting Faroe handling everything else. You decide which attributes your users have and how they are stored.
+-   Sign up with email address verification
+-   Password sign in
+-   Sessions
+-   User email address update with email address verification
+-   User password update
+-   User password reset
+-   User deletion
 
-The architecture also allows the package itself to be very flexible. There is no dependency on other tools, including databases. The storage layer is fully customizable and implementing it requires minimal code. The only external tools you need to bring are a some form of storage, an email server, and a way to expose the server to the internet.
+One important distinction from existing servers is that Faroe does not store your users. Users are handled by a dedicated user server. Together, they complete a full auth system for your application.
+
+Developers are responsible for building their own user server as part of their application. While this can be a bit of a hassle, it gives you full control over your user data. You define the attributes your users have, how they're stored, and how they're managed. The user server at its core is just a basic CRUD server so building it should be relatively straightforward.
+
+This also means that only ephemeral data is stored on the server. Even in a worst-case scenario such as complete data loss, your users would simply need to sign in again. There's no big overhead in maintaining the server.
+
+This architecture also removes the need of a complex storage layer in the server and the package is designed to work with any key-value storage. The package is lightweight and can be deployed anywhere with any type of storage - all you need is just an email server.
 
 To get stated, see [Setup]() page to learn how to use the package. Or, if you want to try out the server first, see the [Quick-start guide]() to run an prebuilt server locally.
