@@ -14,18 +14,15 @@ _All implementations of interfaces must be thread-safe unless specified otherwis
 
 The first step is to define you main storage. The main storage is where session-like data will be stored (sessions, signups, signins, user password resets, user password updates, user email address updates, and user deletion).
 
-The main storage is a key-value store that implements [`KeyValueStorageInterface`](). This storage should be strongly consistent. Any writes/updates should be immediately visible to all subsequent reads. Beyond this consistency guarantee, no other requirements are imposed. You may use a traditional persistent database with backups or, if you're fine with users possible getting signed out, use a temporary storage like an in-memory store.
+The main storage is a key-value store that implements [`MainStorageInterface`](). This storage should be strongly consistent. Any writes/updates should be immediately visible to all subsequent reads. Beyond this consistency guarantee, no other requirements are imposed. You may use a traditional persistent database with backups or, if you're fine with users possible getting signed out, use a temporary storage like an in-memory store.
 
-Your implementation should store the record value, counter, and expiration timestamp under each key. The counter is used to prevent race conditions. If you plan to rely on your storage's built-in TTL mechanism, check that entries are deleted after expiration with minimal delay. Redis guarantees entires are deleted within 1 millisecond of expiration, while items in DynamoDB may not be deleted for hours after expiration.
-
-An [SQLite implementation]() is available on GitHub.
+The entry value, counter, and optionally the expiration timestamp should be stored under each key. The counter is used to prevent race conditions. The expiration is just a hint. You may delete entries past its expiration to free up storage.
 
 ```go
-type KeyValueStorageInterface interface {
+type MainStorageInterface interface {
 	Get(key string) ([]byte, int32, error)
 	Set(key string, value []byte, expiresAt time.Time) error
-	Add(key string, value []byte, expiresAt time.Time) error
-	Update(key string, counter int32, value []byte, expiresAt time.Time) error
+	Update(key string, value []byte, expiresAt time.Time, counter int32) error
 	Delete(key string) error
 }
 ```
@@ -34,13 +31,30 @@ type KeyValueStorageInterface interface {
 
 The cache is an optional storage for storing sessions. Adding this will reduce the number of queries to your main storage.
 
-It implements [`BasicKeyValueStorageInterface`](). Unlike `KeyValueStorageInterface`, it does not have to be strongly consistent.
+It implements [`CacheInterface`](). Unlike the main storage, it does not have to be strongly consistent. However, the expiration should be strictly enforced.
 
 ```go
-type BasicKeyValueStorageInterface interface {
+type CacheInterface interface {
 	Get(key string) ([]byte, error)
 	Set(key string, value []byte, expiresAt time.Time) error
 	Delete(key string) error
+}
+```
+
+## Rate limit storage
+
+The rate limit storage implements [`RateLimitStorageInterface`](). This storage is exclusively used for rate limiting. As with the main storage, your implementation should be strongly consistent.
+
+The entry value, ID, counter, and optionally the expiration timestamp should be stored under each key. The ID and counter is used to prevent race conditions. The expiration is just a hint. You may delete entries past its expiration.
+
+Consider using a fast, in-memory storage here.
+
+```go
+type RateLimitStorageInterface interface {
+	Get(key string) ([]byte, string, int32, error)
+	Add(key string, value []byte, entryId string, expiresAt time.Time) error
+	Update(key string, value []byte, expiresAt time.Time, entryId string, counter int32) error
+	Delete(key string, entryId string, counter int32) error
 }
 ```
 
@@ -76,14 +90,6 @@ type ActionInvocationEndpointClientInterface interface {
 }
 ```
 
-## Frontend action rate limit storage
-
-The rate limit storage stores data related to rate limits. This also implements [`KeyValueStorageInterface`]() like the main storage and must be strongly consistent.
-
-Consider using a fast, in-memory storage here.
-
-> Faroe does not implement IP-based rate limits.
-
 ## Action error logger
 
 The `LogActionError()` method of [`ActionErrorLoggerInterface`]() will be used to log all internal errors.
@@ -96,14 +102,13 @@ type ActionErrorLoggerInterface interface {
 
 ## Email sender
 
-The email sender is an implementation of [`ActionEmailSenderInterface`]().
+The email sender is an implementation of [`ActionsEmailSenderInterface`]().
 
 ```go
-type ActionEmailSenderInterface interface {
+type ActionsEmailSenderInterface interface {
 	SendSignupEmailAddressVerificationCode(emailAddress string, emailAddressVerificationCode string) error
 	SendUserEmailAddressUpdateEmailVerificationCode(emailAddress string, displayName string, emailAddressVerificationCode string) error
 	SendUserPasswordResetTemporaryPassword(emailAddress string, displayName string, temporaryPassword string) error
-
 	SendUserSignedInNotification(emailAddress string, displayName string) error
 	SendUserPasswordUpdatedNotification(emailAddress string, displayName string) error
 	SendUserEmailAddressUpdatedNotification(emailAddress string, displayName string, newEmailAddress string) error
