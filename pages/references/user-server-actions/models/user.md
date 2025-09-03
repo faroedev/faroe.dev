@@ -12,7 +12,7 @@ title: "user model"
 -   `password_hash_algorithm_id` (string)
 -   `password_salt` (bytes)
 -   `disabled` (boolean)
--   `display_name` (string)
+-   `display_name` (string): Empty string if the user doesn't have a display name.
 -   `email_address_counter` (int32)
 -   `password_hash_counter` (int32)
 -   `sessions_counter` (int32)
