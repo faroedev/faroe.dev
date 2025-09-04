@@ -24,12 +24,12 @@ Start the server by passing the port number and your user server action invocati
 See the [user server overview](/user-server/overview) page for details on user servers. No authentication is required for the action invocation endpoint.
 
 ```
-go run . 3000 "https://localhost:3000/user/invoke-action"
+go run . 3001 "https://localhost:3000/user/invoke-action"
 
-faroe-local 3000 "https://localhost:3000/user/invoke-action"
+./local-server 3001 "https://localhost:3000/user/invoke-action"
 ```
 
-`/invoke-action` is the action invocation endpoint.
+`/` is the action invocation endpoint (`http://localhost:3001` on port 3001).
 
 ## What's missing for production?
 
