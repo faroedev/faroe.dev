@@ -17,12 +17,12 @@ git clone git@github.com:faroedev/local-server.git
 Or, install a pre-built binary from [GitHub releases](https://github.com/faroedev/local-server/releases/latest).
 
 ```
-https://github.com/pilcrowonpaper/malta/releases/latest/download/darwin-amd64.tgz
-https://github.com/pilcrowonpaper/malta/releases/latest/download/darwin-arm64.tgz
-https://github.com/pilcrowonpaper/malta/releases/latest/download/linux-amd64.tgz
-https://github.com/pilcrowonpaper/malta/releases/latest/download/linux-arm64.tgz
-https://github.com/pilcrowonpaper/malta/releases/latest/download/windows-386.tgz
-https://github.com/pilcrowonpaper/malta/releases/latest/download/windows-amd64.tgz
+https://github.com/faroedev/local-server/releases/latest/download/darwin-amd64.tgz
+https://github.com/faroedev/local-server/releases/latest/download/darwin-arm64.tgz
+https://github.com/faroedev/local-server/releases/latest/download/linux-amd64.tgz
+https://github.com/faroedev/local-server/releases/latest/download/linux-arm64.tgz
+https://github.com/faroedev/local-server/releases/latest/download/windows-386.tgz
+https://github.com/faroedev/local-server/releases/latest/download/windows-amd64.tgz
 ```
 
 Start the server by passing the port number and your user server action invocation endpoint.
