@@ -6,7 +6,7 @@ title: "Faroe"
 
 _This software is in active development and has only gone through minimal testing._
 
-Faroe is an auth server distributed as a Go package. Install it, configure it, and run it.
+Faroe is a modular auth server distributed as a Go package.
 
 Some key features of the server:
 
@@ -25,23 +25,29 @@ console.log(result.signup);
 window.localStorage.setItem("signup_token", result.signupToken);
 ```
 
-The package itself is also very flexible. The storage layer is fully customizable and can run in any environment. The only thing you need to bring is an email server.
+The package has no hard dependencies. All you need is a key-value store and an email server.
 
 ```go
-actions := faroe.NewActions(
-    mainStorage,
-    cache,
-    rateLimitStorage,
-    logger,
-    userPasswordHashAlgorithms,
-    temporaryPasswordHashAlgorithm,
-    cpuCount,
-    faroe.RealClock,
-    faroe.AllowAllEmailAddresses,
-    emailSender,
-    userActionInvocationEndpointClient,
-    sessionConfig
-)
+package main
+
+import "github.com/faroedev/faroe"
+
+func main() {
+	actions := faroe.NewActions(
+		mainStorage,
+		cache,
+		rateLimitStorage,
+		logger,
+		userPasswordHashAlgorithms,
+		temporaryPasswordHashAlgorithm,
+		cpuCount,
+		faroe.RealClock,
+		faroe.AllowAllEmailAddresses,
+		emailSender,
+		userActionInvocationEndpointClient,
+		sessionConfig,
+	)
+}
 ```
 
 Only password authentication is supported. Support for passkeys and 2FA are planned but there are no immediate plans to add social login (e.g. Sign in with Google).
