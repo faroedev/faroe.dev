@@ -26,25 +26,27 @@ type ActionsInterface interface {
 }
 ```
 
-Then, create a new [`ActionInvocationRequestResolverStruct`](https://pkg.go.dev/github.com/faroedev/go-user-server#ActionInvocationRequestResolverStruct) instance and create an [action invocation endpoint](/references/action-invocation-endpoint). **This action invocation endpoint should be protected and only accessible to trusted clients.** Some options are private networks and request signing.
+Then, create a new [`ServerStruct`](https://pkg.go.dev/github.com/faroedev/go-user-server#ServerStruct) with [`NewServer()`](https://pkg.go.dev/github.com/faroedev/go-user-server#NewServer). 
 
-`ActionInvocationRequestResolver.ResolveRequest()` takes a request body of an action invocation request and returns the response body. It will return an `error` if the request is invalid.
+Use the [`ServerStruct.ResolveActionInvocationEndpointRequest()`](https://pkg.go.dev/github.com/faroedev/go-user-server#ServerStruct.ResolveActionInvocationEndpointRequest) to create an action invocation endpoint. It takes a request body of an action invocation request and returns the response body. It will return an `error` if the request is invalid.
+
+**The action invocation endpoint should be protected and only accessible to trusted clients.** Some options are private networks and request signing.
 
 ```go
 import "github.com/faroedev/go-faroe-user-server"
 
-var resolver = userserver.NewActionInvocationRequestResolver(actions)
+var server = userserver.NewServer(actions)
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
     // TODO: Protect route.
-    
+
     bodyJSONBytes, err := io.ReadAll(r.Body)
     if err != nil {
         w.WriteHeader(http.StatusBadRequest)
         return
     }
 
-    resultJSON, err := resolver.ResolveRequest(string(bodyJSONBytes))
+    resultJSON, err := server.ResolveActionInvocationEndpointRequest(string(bodyJSONBytes))
     if err != nil {
         w.WriteHeader(http.StatusBadRequest)
         return
