@@ -62,7 +62,7 @@ set_signup_password(
 
 ## Complete sign-up
 
-Complete the sign-up by creating a new user with the [`complete_signup`](/references/faroe-server-actions/actions/complete_signup) action. This action will also attempt to issue a new session.
+Complete the sign-up by creating a new user with the [`complete_signup`](/references/faroe-server-actions/actions/complete_signup) action. This action will also attempt to issue a new [session](/concepts/sessions).
 
 ```
 session, session_token = complete_signup(

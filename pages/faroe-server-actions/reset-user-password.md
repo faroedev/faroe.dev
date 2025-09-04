@@ -48,7 +48,7 @@ set_user_password_reset_new_password(
 
 ## Complete password reset
 
-Complete the user password reset with the [`complete_user_password_reset`](/references/faroe-server-actions/actions/complete_user_password_reset) action.
+Complete the user password reset with the [`complete_user_password_reset`](/references/faroe-server-actions/actions/complete_user_password_reset) action. This will also attempt to issue a new [session](/concepts/sessions).
 
 **Existing user sessions will not be invalidated.**
 

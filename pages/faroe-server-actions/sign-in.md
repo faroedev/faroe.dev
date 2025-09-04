@@ -35,7 +35,7 @@ verify_signin_user_password(
 
 ## Complete sign-in
 
-Complete the sign-in by exchanging the signin for a new session with the [`complete_signin`](/references/faroe-server-actions/actions/complete_signin) action.
+Complete the sign-in by exchanging the signin for a new [session](/concepts/sessions) with the [`complete_signin`](/references/faroe-server-actions/actions/complete_signin) action.
 
 ```
 session, session_token = complete_signin(
