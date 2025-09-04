@@ -33,7 +33,7 @@ package main
 import "github.com/faroedev/faroe"
 
 func main() {
-	actions := faroe.NewActions(
+	server := faroe.NewServer(
 		mainStorage,
 		cache,
 		rateLimitStorage,

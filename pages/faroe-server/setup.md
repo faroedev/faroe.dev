@@ -125,9 +125,9 @@ type EmailSenderInterface interface {
 
 Storage entry keys are not globally namespaced. For example, an entry in the rate limit storage can have a same key as an entry in the cache. If you use a shared storage, make sure to prefix the key with `NAME.` (note the period) like `main.` and `rate_limit.`.
 
-## Initialize actions
+## Create server
 
-Create a new [`ActionsStruct`](https://pkg.go.dev/github.com/faroedev/faroe#ActionsStruct) with [`NewActions()`](https://pkg.go.dev/github.com/faroedev/faroe#NewActions).
+Create a new [`ServerStruct`](https://pkg.go.dev/github.com/faroedev/faroe#ServerStruct) with [`NewServer()`](https://pkg.go.dev/github.com/faroedev/faroe#NewServer).
 
 If you do not have a cache, pass [`EmptyCache`](https://pkg.go.dev/github.com/faroedev/faroe#EmptyCache) as the cache.
 
@@ -136,7 +136,7 @@ You can provide multiple user password hashing algorithms if your users use diff
 `maxConcurrentPasswordHashingProcesses` is the number of maximum CPU threads you want to dedicate to hashing passwords (user passwords and temporary passwords). Password hashing is expensive and will block the thread for the duration of the process.
 
 ```go
-core := faroe.NewActions(
+server := faroe.NewServer(
 	mainStorage,
 	cache,
 	rateLimitStorage,
@@ -156,15 +156,7 @@ core := faroe.NewActions(
 )
 ```
 
-## Create action invocation endpoint
-
-Create a new [`ActionInvocationRequestResolverStruct`](https://pkg.go.dev/github.com/faroedev/go-user-server#ActionInvocationRequestResolverStruct) with [`NewActionInvocationRequestResolver()`](https://pkg.go.dev/github.com/faroedev/go-user-server#NewActionInvocationRequestResolver).
-
-```go
-actionInvocationRequestResolver := faroe.NewActionInvocationRequestResolver(actions)
-```
-
-`ResolveRequestWithBlocklist()` takes an action invocation endpoint request body and returns the response body.
+Handle action invocation endpoint requests with [`ServerStruct.ResolveRequestWithBlocklist()`](https://pkg.go.dev/github.com/faroedev/faroe#ServerStruct.ResolveRequestWithBlocklist). It takes an action invocation endpoint request body and returns the response body.
 
 ```go
 import (
@@ -181,7 +173,7 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	resultJSON, err := actionInvocationRequestResolver.ResolveRequestWithBlocklist(string(bodyBytes), nil)
+	resultJSON, err := server.ResolveActionInvocationRequestWithBlocklist(string(bodyBytes), nil)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
