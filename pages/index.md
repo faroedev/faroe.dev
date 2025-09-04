@@ -45,4 +45,4 @@ actions := faroe.NewActions(
 
 Only password authentication is supported. Support for passkeys and 2FA are planned but there are no immediate plans to add social login (e.g. Sign in with Google). 
 
-Read the [Overview](/faroe-server/overview) page to get started.
+Read the [Overview](/faroe-server/overview) page to learn more and get started.
