@@ -4,9 +4,9 @@ title: "Faroe"
 
 # Faroe
 
-*This software is in active development and has only gone through minimal testing.*
+_This software is in active development and has only gone through minimal testing._
 
-Faroe is an open source auth server packaged as a Go library.
+Faroe is an auth server distributed as a Go package. Install it, configure it, and run it.
 
 Some key features of the server:
 
@@ -44,6 +44,6 @@ actions := faroe.NewActions(
 )
 ```
 
-Only password authentication is supported. Support for passkeys and 2FA are planned but there are no immediate plans to add social login (e.g. Sign in with Google). 
+Only password authentication is supported. Support for passkeys and 2FA are planned but there are no immediate plans to add social login (e.g. Sign in with Google).
 
 Read the [Overview](/faroe-server/overview) page to learn more and get started.
