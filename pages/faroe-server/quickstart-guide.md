@@ -8,7 +8,13 @@ Creating a Faroe server using the package may be a bigger commitment than some p
 
 This is a bare-bones Faroe implementation with everything stored in memory. It is only for local testing and **should not be used in production.**
 
-You can either clone the project if you have Go installed already, or install a pre-built binary from [GitHub releases](https://github.com/faroedev/local-server/releases/latest).
+To get started, clone the repository.
+
+```
+git clone git@github.com:faroedev/local-server.git
+```
+
+Or, install a pre-built binary from [GitHub releases](https://github.com/faroedev/local-server/releases/latest).
 
 ```
 https://github.com/pilcrowonpaper/malta/releases/latest/download/darwin-amd64.tgz
