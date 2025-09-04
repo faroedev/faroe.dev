@@ -11,8 +11,9 @@ Faroe is an open source auth server packaged as a Go library.
 Some key features of the server:
 
 1. Takes care of all the hard parts. Passwords, email address verification, sessions, rate limiting, password resets, and more.
-2. Extends your existing user database instead of replacing it.
-3. Only ephemeral data is stored. Less things to manage and worry about.
+2. Extends your existing user database instead of replacing it. Full customizability and no more data synchronization.
+3. No direct connections to your database. Just basic HTTP requests.
+4. Only ephemeral data is stored. Less things to manage and worry about.
 
 ```ts
 const result = await client.createSignup(emailAddress);
