@@ -18,6 +18,8 @@ The main storage is a key-value store that implements [`MainStorageInterface`]()
 
 The entry value, counter, and optionally the expiration timestamp should be stored under each key. The counter is used to prevent race conditions. The expiration is just a hint. You may delete entries past its expiration to free up storage.
 
+An [example implementation using Go maps](https://code.faroe.dev/go-faroe-main-storage-map) is available.
+
 ```go
 type MainStorageInterface interface {
 	Get(key string) ([]byte, int32, error)
@@ -32,6 +34,8 @@ type MainStorageInterface interface {
 The cache is an optional storage for storing sessions. Adding this will reduce the number of queries to your main storage.
 
 It implements [`CacheInterface`](). Unlike the main storage, it does not have to be strongly consistent. However, the TTL should be strictly enforced.
+
+An [example implementation using Go maps](https://code.faroe.dev/go-faroe-cache-map) is available.
 
 ```go
 type CacheInterface interface {
@@ -49,6 +53,8 @@ The entry value, ID, counter, and optionally the expiration timestamp should be 
 
 Consider using a fast, in-memory storage here.
 
+An [example implementation using Go maps](https://code.faroe.dev/go-faroe-rate-limit-storage-map) is available.
+
 ```go
 type RateLimitStorageInterface interface {
 	Get(key string) ([]byte, string, int32, error)
@@ -62,7 +68,7 @@ type RateLimitStorageInterface interface {
 
 The user password hash algorithm implements [`PasswordHashAlgorithmInterface`](). The ID is a unique identifier for the algorithm. We recommend including the parameters alongside the algorithm name like `argon2id.65536.3.1.32`.
 
-We recommend using Argon2id with 64MiB of memory, 3 iterations, and 1 degree of parallelism. An [example implementation]() is available on GitHub.
+We recommend using Argon2id with 64MiB of memory, 3 iterations, and 1 degree of parallelism. An [example implementation for Argon2id](https://code.faroe.dev/go-faroe-password-hash-algorithm-argon2) is available.
 
 ```go
 type PasswordHashAlgorithmInterface interface {
