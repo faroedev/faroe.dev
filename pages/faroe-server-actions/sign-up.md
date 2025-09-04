@@ -16,7 +16,7 @@ Here's how the process looks for the user:
 
 ## Start sign-up
 
-Use the [`create_signup`]() action to create a new [signup](). This action also sends an email address verification code to the user's inbox. Store the returned signup token.
+Use the [`create_signup`](/references/faroe-server-actions/actions/create_signup) action to create a new [signup](/concepts/signups). This action also sends an email address verification code to the user's inbox. Store the returned signup token.
 
 Email addresses are considered case-sensitive. Faroe does not prevent users from using "tricks" that allow users to use the same "base" email address to create multiple accounts (e.g. using `+` or `.` in Google account email addresses).
 
@@ -28,7 +28,7 @@ signup, signup_token = create_signup(
 
 ## Resend email address verification code
 
-Use the [`send_signup_email_address_verification_code`]() action to send the verification code to the user's inbox again.
+Use the [`send_signup_email_address_verification_code`](/references/faroe-server-actions/actions/send_signup_email_address_verification_code) action to send the verification code to the user's inbox again.
 
 ```
 send_signup_email_address_verification_code(
@@ -38,7 +38,7 @@ send_signup_email_address_verification_code(
 
 ## Verify email address
 
-Prompt the user for the verification code and verify it using the [`verify_signup_email_address_verification_code`]() action.
+Prompt the user for the verification code and verify it using the [`verify_signup_email_address_verification_code`](/references/faroe-server-actions/actions/verify_signup_email_address_verification_code) action.
 
 ```
 verify_signup_email_address_verification_code(
@@ -49,7 +49,7 @@ verify_signup_email_address_verification_code(
 
 ## Set password
 
-Set the password with the [`set_signup_password`]() action. The password must be between 10 and 100 characters.
+Set the password with the [`set_signup_password`](/references/faroe-server-actions/actions/set_signup_password) action. The password must be between 10 and 100 characters.
 
 The password can only be set once.
 
@@ -62,7 +62,7 @@ set_signup_password(
 
 ## Complete sign-up
 
-Complete the sign-up by creating a new user with the [`complete_signup`]() action. This action will also attempt to issue a new session.
+Complete the sign-up by creating a new user with the [`complete_signup`](/references/faroe-server-actions/actions/complete_signup) action. This action will also attempt to issue a new session.
 
 ```
 session, session_token = complete_signup(

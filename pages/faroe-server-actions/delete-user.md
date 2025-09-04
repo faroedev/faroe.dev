@@ -14,7 +14,7 @@ Here's how the process looks for the user:
 
 ## Start user deletion
 
-Create a new [user deletion]() with the [`create_user_deletion`]() action. Store the returned token.
+Create a new [user deletion](/concepts/user-deletions) with the [`create_user_deletion`](/references/faroe-server-actions/actions/create_user_deletion) action. Store the returned token.
 
 ```
 user_deletion, user_deletion_token = create_user_deletion(
@@ -24,7 +24,7 @@ user_deletion, user_deletion_token = create_user_deletion(
 
 ## Verify user identity
 
-Verify the user's identity with their password using the [`verify_user_deletion_user_password`]() action.
+Verify the user's identity with their password using the [`verify_user_deletion_user_password`](/references/faroe-server-actions/actions/verify_user_deletion_user_password) action.
 
 ```
 verify_user_deletion_user_password(
@@ -36,7 +36,7 @@ verify_user_deletion_user_password(
 
 ## Complete user deletion
 
-Complete the user deletion with the [`complete_user_deletion`]() action.
+Complete the user deletion with the [`complete_user_deletion`](/references/faroe-server-actions/actions/complete_user_deletion) action.
 
 ```
 complete_user_deletion(

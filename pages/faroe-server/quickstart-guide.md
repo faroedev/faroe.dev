@@ -4,7 +4,7 @@ title: "Quick-start guide"
 
 # Quick-start guide
 
-Creating a Faroe server using the package may be a bigger commitment than some people are ready to make. If you want to try out the Faroe server locally before using the package, we recommend running the [Faroe local server]().
+Creating a Faroe server using the package may be a bigger commitment than some people are ready to make. If you want to try out the Faroe server locally before using the package, we recommend running the [Faroe local server](https://github.com/faroedev/local-server).
 
 This is a bare-bones Faroe implementation using SQLite. It is only for local testing and **should not be used in production.**
 

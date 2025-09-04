@@ -12,7 +12,7 @@ npm i @faroe/client
 
 Initialize a new `Client` instance with the action invocation endpoint client. A method is available for each action. For example, `Client.getSession()` is mapped to the `get_session` action.
 
-See the package [API reference]() for details.
+See the package [API reference](https://github.com/faroedev/js-client#api-reference) for details.
 
 ```ts
 import * as faroe_client from "@faroe/client";

@@ -24,4 +24,4 @@ This also means that only ephemeral data is stored on the server. Even in a wors
 
 This architecture also removes the need of a complex storage layer in the server and the package is designed to work with any key-value storage. The package is lightweight and can be deployed anywhere with any type of storage - all you need is just an email server.
 
-To get stated, see [Setup]() page to learn how to use the package. Or, if you want to try out the server first, see the [Quick-start guide]() to run an prebuilt server locally.
+To get stated, see [Setup](/faroe-server/setup) page to learn how to use the package. Or, if you want to try out the server first, see the [Quick-start guide](/faroe-server/quickstart-guide) to run an prebuilt server locally.

@@ -6,6 +6,8 @@ title: "Implement user server with Go"
 
 We provide an official package to make it easier to build user servers with Go.
 
+See the package [API reference](https://pkg.go.dev/github.com/faroedev/go-user-server) for details.
+
 ```
 go get github.com/faroedev/go-faroe-user-server
 ```
@@ -24,7 +26,7 @@ type ActionsInterface interface {
 }
 ```
 
-Then, create a new [`ActionInvocationRequestResolverStruct`]() instance and create an [action invocation endpoint]().
+Then, create a new [`ActionInvocationRequestResolverStruct`]() instance and create an [action invocation endpoint](/references/action-invocation-endpoint).
 
 `ActionInvocationRequestResolver.ResolveRequest()` takes a request body of an action invocation request and returns the response body. It will return an `error` if the request is invalid.
 

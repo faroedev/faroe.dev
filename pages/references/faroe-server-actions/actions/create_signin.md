@@ -11,7 +11,7 @@ The email addresses is not "normalized" (e.g. all lowercase) before processing.
 ## Parameters
 
 -   `action_invocation_id` (string)
--   `user_email_address` (string): A valid [email address]().
+-   `user_email_address` (string): A valid email address.
 
 ## Return values
 

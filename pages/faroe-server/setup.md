@@ -4,9 +4,9 @@ title: "Set up a Faroe server"
 
 # Set up a Faroe server
 
-A Faroe server is a server that exposes an [action invocation endpoint]() for Faroe server [actions]().
+A Faroe server is a server that exposes an [action invocation endpoint](/references/action-invocation-endpoint) for Faroe server [actions](/concepts/actions).
 
-This may take up to an hour depending on how comfortable you are with the language and architecture. If you want to evaluate the server first, consider using the prebuilt local server by following the [Quick-start guide]().
+This may take up to an hour depending on how comfortable you are with the language and architecture. If you want to evaluate the server first, consider using the prebuilt local server by following the [Quick-start guide](/faroe-server/quickstart-guide).
 
 _All implementations of interfaces must be thread-safe unless specified otherwise._
 

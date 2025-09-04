@@ -14,7 +14,7 @@ Here's how the process looks for the user:
 
 ## Start sign-in
 
-Use the [`create_signin`]() action to create a new [signin]() with the user's email address. Store the returned signin token.
+Use the [`create_signin`](/references/faroe-server-actions/actions/create_signin) action to create a new [signin](/concepts/signins) with the user's email address. Store the returned signin token.
 
 ```
 signin, signin_token = create_signin(
@@ -24,7 +24,7 @@ signin, signin_token = create_signin(
 
 ## Verify user first factor
 
-Use the [`verify_signin_user_password`]() action to verify the user's first factor with their password.
+Use the [`verify_signin_user_password`](/references/faroe-server-actions/actions/verify_signin_user_password) action to verify the user's first factor with their password.
 
 ```
 verify_signin_user_password(
@@ -35,7 +35,7 @@ verify_signin_user_password(
 
 ## Complete sign-in
 
-Complete the sign-in by exchanging the signin for a new session with the [`complete_signin()`] action.
+Complete the sign-in by exchanging the signin for a new session with the [`complete_signin`](/references/faroe-server-actions/actions/complete_signin) action.
 
 ```
 session, session_token = complete_signin(

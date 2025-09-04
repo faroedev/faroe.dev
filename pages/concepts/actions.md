@@ -6,7 +6,7 @@ title: "Actions"
 
 Actions are procedures or functions in the server designed to be called by other servers. They take a list of arguments and either return some values or an error (defined by their error code). They provide an RPC-like API.
 
-Servers can make actions invocable by exposing an [action invocation endpoint]().  
+Servers can make actions invocable by exposing an [action invocation endpoint](/references/action-invocation-endpoint).  
 
 ## Types
 
