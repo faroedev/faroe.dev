@@ -156,7 +156,7 @@ server := faroe.NewServer(
 )
 ```
 
-Handle action invocation endpoint requests with [`ServerStruct.ResolveRequestWithBlocklist()`](https://pkg.go.dev/github.com/faroedev/faroe#ServerStruct.ResolveRequestWithBlocklist). It takes an action invocation endpoint request body and returns the response body.
+Handle action invocation endpoint requests with [`ServerStruct.ResolveActionInvocationEndpointRequestWithBlocklist()`](https://pkg.go.dev/github.com/faroedev/faroe#ServerStruct.ResolveActionInvocationEndpointRequestWithBlocklist). It takes an action invocation endpoint request body and returns the response body.
 
 ```go
 import (
@@ -173,7 +173,7 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	resultJSON, err := server.ResolveActionInvocationRequestWithBlocklist(string(bodyBytes), nil)
+	resultJSON, err := server.ResolveActionInvocationEndpointRequestWithBlocklist(string(bodyBytes), nil)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
