@@ -14,6 +14,8 @@ A user server is a dedicated server for your users. It exposes an [action invoca
 -   `increment_user_sessions_counter`
 -   `delete_user`
 
+Because user server actions provide direct access to your user database, **the action invocation endpoint should be protected and only accessible to trusted clients.** Some options are private networks and request signing.
+
 Guides for implementing the server is available:
 
 -   [Go](/user-server/implement-with-go)

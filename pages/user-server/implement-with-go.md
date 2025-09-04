@@ -26,7 +26,7 @@ type ActionsInterface interface {
 }
 ```
 
-Then, create a new [`ActionInvocationRequestResolverStruct`](https://pkg.go.dev/github.com/faroedev/go-user-server#ActionInvocationRequestResolverStruct) instance and create an [action invocation endpoint](/references/action-invocation-endpoint).
+Then, create a new [`ActionInvocationRequestResolverStruct`](https://pkg.go.dev/github.com/faroedev/go-user-server#ActionInvocationRequestResolverStruct) instance and create an [action invocation endpoint](/references/action-invocation-endpoint). **This action invocation endpoint should be protected and only accessible to trusted clients.** Some options are private networks and request signing.
 
 `ActionInvocationRequestResolver.ResolveRequest()` takes a request body of an action invocation request and returns the response body. It will return an `error` if the request is invalid.
 
@@ -36,6 +36,8 @@ import "github.com/faroedev/go-faroe-user-server"
 var resolver = userserver.NewActionInvocationRequestResolver(actions)
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
+    // TODO: Protect route.
+    
     bodyJSONBytes, err := io.ReadAll(r.Body)
     if err != nil {
         w.WriteHeader(http.StatusBadRequest)
