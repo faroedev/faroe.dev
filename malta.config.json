@@ -1,6 +1,6 @@
 {
     "name": "Faroe",
-    "description": "Faroe is an auth server distributed as a Go package..",
+    "description": "Faroe is a modular auth server distributed as a Go package.",
     "domain": "https://faroe.dev",
 
     "sidebar": [
