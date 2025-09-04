@@ -12,7 +12,7 @@ See the package [API reference](https://github.com/faroedev/js-user-server#api-r
 npm install @faroe/user-server
 ```
 
-Implement the [`Actions`]() interface.
+Implement the [`Actions`](https://github.com/faroedev/js-user-server#actions) interface.
 
 ```ts
 interface Actions {
@@ -39,7 +39,7 @@ Example implementations using plain SQL are also available:
 -   [PostgreSQL](https://code.faroe.dev/js-user-server-actions-sql-postgresql)
 -   [SQLite](https://code.faroe.dev/js-user-server-actions-sql-sqlite)
 
-With `faroe_user_server.Actions`, create a new [`ActionInvocationRequestResolver`]() instance and create an [action invocation endpoint](/references/action-invocation-endpoint).
+With `faroe_user_server.Actions`, create a new [`ActionInvocationRequestResolver`](https://github.com/faroedev/js-user-server#actioninvocationrequestresolver) instance and create an [action invocation endpoint](/references/action-invocation-endpoint).
 
 `ActionInvocationRequestResolver.resolveRequest()` takes a request body of an action request endpoint and returns the response body. It will throw an `Error`if the request is invalid.
 

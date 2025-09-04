@@ -12,7 +12,7 @@ See the package [API reference](https://pkg.go.dev/github.com/faroedev/go-user-s
 go get github.com/faroedev/go-faroe-user-server
 ```
 
-Implement the [`ActionsInterface`]() interface.
+Implement the [`ActionsInterface`](https://pkg.go.dev/github.com/faroedev/go-user-server#ActionsInterface) interface.
 
 ```go
 type ActionsInterface interface {
@@ -26,7 +26,7 @@ type ActionsInterface interface {
 }
 ```
 
-Then, create a new [`ActionInvocationRequestResolverStruct`]() instance and create an [action invocation endpoint](/references/action-invocation-endpoint).
+Then, create a new [`ActionInvocationRequestResolverStruct`](https://pkg.go.dev/github.com/faroedev/go-user-server#ActionInvocationRequestResolverStruct) instance and create an [action invocation endpoint](/references/action-invocation-endpoint).
 
 `ActionInvocationRequestResolver.ResolveRequest()` takes a request body of an action invocation request and returns the response body. It will return an `error` if the request is invalid.
 
