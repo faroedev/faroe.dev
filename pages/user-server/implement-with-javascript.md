@@ -39,14 +39,16 @@ Example implementations using plain SQL are also available:
 -   [PostgreSQL](https://code.faroe.dev/js-user-server-actions-sql-postgresql)
 -   [SQLite](https://code.faroe.dev/js-user-server-actions-sql-sqlite)
 
-With `faroe_user_server.Actions`, create a new [`ActionInvocationRequestResolver`](https://github.com/faroedev/js-user-server#actioninvocationrequestresolver) instance and create an [action invocation endpoint](/references/action-invocation-endpoint). **This action invocation endpoint should be protected and only accessible to trusted clients.** Some options are private networks and request signing.
+Then, create a new [`Server`](https://github.com/faroedev/js-user-server#server) instance.
 
-`ActionInvocationRequestResolver.resolveRequest()` takes a request body of an action request endpoint and returns the response body. It will throw an `Error`if the request is invalid.
+Use the `Server.resolveActionInvocationEndpointRequest()` to create an action invocation endpoint. It takes a request body of an action invocation request and returns the response body. It will return an `error` if the request is invalid.
+
+**The action invocation endpoint should be protected and only accessible to trusted clients.** Some options are private networks and request signing.
 
 ```ts
 // TODO: Protect route.
 
-const resolver = new faroe_user_server.ActionInvocationRequestResolver(actions);
+const server = new faroe_user_server.Server(actions);
 
 let bodyJSON: string;
 
@@ -54,7 +56,7 @@ let bodyJSON: string;
 
 let responseBodyJSON: string;
 try {
-    responseBodyJSON = await resolver.resolveRequest(bodyText);
+    responseBodyJSON = await server.resolveActionInvocationEndpointRequest(bodyJSON);
 } catch {
     // Failed to parse JSON, unknown action, etc
     // Return 400 response
