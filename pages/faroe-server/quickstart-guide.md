@@ -32,7 +32,7 @@ See the [user server overview](/user-server/overview) page for details on user s
 ```
 go run . 3001 "https://localhost:3000/user/invoke-action"
 
-./local-server 3001 "https://localhost:3000/user/invoke-action"
+./faroe 3001 "https://localhost:3000/user/invoke-action"
 ```
 
 `/` is the action invocation endpoint (`http://localhost:3001` on port 3001).
