@@ -16,9 +16,9 @@ Like any other auth server, client-side applications can use it to sign in, sign
 -   User password reset
 -   User deletion
 
-One important distinction from existing servers is that Faroe does not store your users. Users are handled by a dedicated user server. Together, they complete a full auth system for your application.
+One important distinction from existing servers is that Faroe does not directly store your users. Instead, you define a light abstraction over your app's database that allows Faroe to perform basic CRUD (create, read, update, delete) operations on your users. This gives you full control over your user data. You define the attributes your users have, how they're stored, and how they're managed.
 
-Developers are responsible for building their own user server as part of their application. While this can be a bit of a hassle, it gives you full control over your user data. You define the attributes your users have, how they're stored, and how they're managed. The user server at its core is just a basic CRUD server so building it should be relatively straightforward.
+Alternatively, you may create a separate user server (possibly in a different language) to handle queries to your app's database. In this setup, Faroe will make HTTP requests to your user server to interact with your user data.
 
 This also means that only ephemeral data is stored on the server. Even in a worst-case scenario such as complete data loss, your users would simply need to sign in again. There's no big overhead in maintaining the server.
 

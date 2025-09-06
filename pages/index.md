@@ -12,7 +12,7 @@ Some key features of the server:
 
 1. Takes care of all the hard parts. Passwords, email address verification, sessions, rate limiting, password resets, and more.
 2. Extends your existing user database instead of replacing it. Own and customize your user data. No more data synchronization between servers.
-3. No direct connections to your database. Just basic HTTP requests.
+3. No direct connections to your database.
 4. Only ephemeral data is stored. Less things to manage and worry about.
 
 ```ts
@@ -37,6 +37,7 @@ func main() {
 		mainStorage,
 		cache,
 		rateLimitStorage,
+		userStore,
 		logger,
 		userPasswordHashAlgorithms,
 		temporaryPasswordHashAlgorithm,
@@ -44,7 +45,6 @@ func main() {
 		faroe.RealClock,
 		faroe.AllowAllEmailAddresses,
 		emailSender,
-		userActionInvocationEndpointClient,
 		sessionConfig,
 	)
 }
