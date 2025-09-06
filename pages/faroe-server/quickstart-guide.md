@@ -58,6 +58,7 @@ userServerClient := faroe.NewUserServerClient(userActionInvocationEndpointClient
 Remove the unnecessary CLI parameters.
 
 ```go
+// Remove these lines:
 if len(os.Args) < 3 {
 	fmt.Fprintln(os.Stderr, "Missing user_server_action_invocation_endpoint argument")
 	return
