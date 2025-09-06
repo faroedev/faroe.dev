@@ -23,7 +23,7 @@ https://github.com/faroedev/local-server/releases/latest/download/windows-386.tg
 https://github.com/faroedev/local-server/releases/latest/download/windows-amd64.tgz
 ```
 
-Or you can fork the project.
+Or you can fork the project from GitHub.
 
 ```
 git clone git@github.com:faroedev/local-server.git
@@ -39,6 +39,39 @@ go run . 3001 "https://localhost:3000/user/invoke-action"
 
 `/` is the action invocation endpoint (`http://localhost:3001` on port 3001).
 
+## Without a user server
+
+Alternatively, instead of using a user server, you can write your database queries within the server.
+
+Fork the project from GitHub.
+
+```
+git clone git@github.com:faroedev/local-server.git
+```
+
+Replace the `userServerClient` in `main.go` with your own implementation of [`UserStoreInterface`](https://pkg.go.dev/github.com/faroedev/faroe#UserStoreInterface). See the [Setup](/faroe-server#user-store) page for details.
+
+```go
+userServerClient := faroe.NewUserServerClient(userActionInvocationEndpointClient)
+```
+
+Remove the unnecessary CLI parameters.
+
+```go
+// Remove these lines:
+if len(os.Args) < 3 {
+	fmt.Fprintln(os.Stderr, "Missing user_server_action_invocation_endpoint argument")
+	return
+}
+userServerActionInvocationEndpoint := os.Args[2]
+userActionInvocationEndpointClient := newPublicActionInvocationEndpointClient(userServerActionInvocationEndpoint)
+```
+
+Start the server by passing the port.
+
+```
+go run . 3001
+```
 
 ## What's missing for production?
 
