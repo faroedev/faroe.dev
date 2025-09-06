@@ -158,6 +158,7 @@ server := faroe.NewServer(
 	mainStorage,
 	cache,
 	rateLimitStorage,
+	userStore,
 	errorLogger,
 	[]faroe.PasswordHashAlgorithmInterface{userPasswordHashAlgorithm},
 	temporaryPasswordHashAlgorithm,
@@ -165,7 +166,6 @@ server := faroe.NewServer(
 	faroe.RealClock,
 	faroe.AllowAllEmailAddresses,
 	emailSender,
-	userActionInvocationEndpointClient,
 	faroe.SessionConfigStruct{
 		InactivityTimeout:     30 * 24 * time.Hour,
 		ActivityCheckInterval: time.Minute,
