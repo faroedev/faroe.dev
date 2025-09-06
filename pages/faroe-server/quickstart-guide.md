@@ -8,13 +8,11 @@ Creating a Faroe server using the package may be a bigger commitment than some p
 
 This is a bare-bones Faroe implementation with everything stored in memory. It is only for local testing and **should not be used in production.**
 
-To get started, clone the repository.
+## With a user server
 
-```
-git clone git@github.com:faroedev/local-server.git
-```
+A user server is a dedicated server that handles user operations on your app's database. See the [user server overview](/user-server/overview) page for details.
 
-Or, install a pre-built binary from [GitHub releases](https://github.com/faroedev/local-server/releases/latest).
+Install a pre-built binary from [GitHub releases](https://github.com/faroedev/local-server/releases/latest).
 
 ```
 https://github.com/faroedev/local-server/releases/latest/download/darwin-amd64.tgz
@@ -25,9 +23,13 @@ https://github.com/faroedev/local-server/releases/latest/download/windows-386.tg
 https://github.com/faroedev/local-server/releases/latest/download/windows-amd64.tgz
 ```
 
-Start the server by passing the port number and your user server action invocation endpoint.
+Or you can fork the project.
 
-See the [user server overview](/user-server/overview) page for details on user servers. No authentication is required for the action invocation endpoint.
+```
+git clone git@github.com:faroedev/local-server.git
+```
+
+Start the server by passing the port number and your user server action invocation endpoint. No authentication is required for the action invocation endpoint.
 
 ```
 go run . 3001 "https://localhost:3000/user/invoke-action"
@@ -36,6 +38,7 @@ go run . 3001 "https://localhost:3000/user/invoke-action"
 ```
 
 `/` is the action invocation endpoint (`http://localhost:3001` on port 3001).
+
 
 ## What's missing for production?
 
