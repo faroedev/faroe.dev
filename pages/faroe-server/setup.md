@@ -18,8 +18,6 @@ The main storage is a key-value store that implements [`MainStorageInterface`](h
 
 The entry value, counter, and optionally the expiration timestamp should be stored under each key. The counter is used to prevent race conditions. The expiration is just a hint. You may delete entries past its expiration to free up storage.
 
-An [example implementation using Go maps](https://code.faroe.dev/faroe-main-storage-map) is available.
-
 ```go
 type MainStorageInterface interface {
 	Get(key string) ([]byte, int32, error)
@@ -28,6 +26,13 @@ type MainStorageInterface interface {
 	Delete(key string) error
 }
 ```
+
+Example implementations are available:
+
+- [MySQL with `database/sql`](https://code.faroe.dev/faroe-main-storage-sql-mysql)
+- [PostgreSQL with `database/sql`](https://code.faroe.dev/faroe-main-storage-sql-postgresql)
+- [SQLite with `database/sql`](https://code.faroe.dev/faroe-main-storage-sql-sqlite)
+- [Basic example with Go maps](https://code.faroe.dev/faroe-main-storage-map)
 
 ## Cache storage
 
