@@ -80,6 +80,12 @@ type UserStoreInterface interface {
 }
 ```
 
+Example implementations are available:
+
+- [MySQL with `database/sql`](https://code.faroe.dev/faroe-user-store-sql-mysql)
+- [PostgreSQL with `database/sql`](https://code.faroe.dev/faroe-user-store-sql-postgresql)
+- [SQLite with `database/sql`](https://code.faroe.dev/faroe-user-store-sql-sqlite)
+
 Alternatively, you may create a separate [user server](/user-server/overview) to handle database operations for your users in a dedicated server. To connect to your user server, use  [`NewUserServerClient()`](https://pkg.go.dev/github.com/faroedev/faroe#NewUserServerClient) to create [`UserServerStruct`](https://pkg.go.dev/github.com/faroedev/faroe#UserServerStruct), which implements `UserStoreInterface`. `NewUserServerClient()` takes an [`ActionInvocationEndpointClientInterface`](https://pkg.go.dev/github.com/faroedev/faroe#ActionInvocationEndpointClientInterface), which is used to send action invocation requests to the user server's action invocation endpoint.
 
 ```go
