@@ -34,9 +34,7 @@ import "github.com/faroedev/faroe"
 
 func main() {
 	server := faroe.NewServer(
-		mainStorage,
-		cache,
-		rateLimitStorage,
+		storage,
 		userStore,
 		logger,
 		userPasswordHashAlgorithms,
