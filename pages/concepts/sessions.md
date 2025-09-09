@@ -20,6 +20,6 @@ Inactivity timeout controls how long an inactive session remains valid. It is ba
 
 Note that the expiration is not hard-coded to individual sessions. Expiration timestamps are calculated using the current server configuration, and not based on the configuration when the session was created.
 
-## Caching
+## Session validation caching
 
-Sessions can be cached to reduce the load to storage. Sessions are not guaranteed to be immediately invalidated if caching is enabled.
+The server gets the current state of the user when validating sessions. You can enable caching to temporarily cache the user state (1-5 minutes) to reduce how often user checks are performed. See [`SessionConfigStruct.UserCacheExpiration`](https://pkg.go.dev/github.com/faroedev/faroe#SessionConfigStruct.UserCacheExpiration).

@@ -10,18 +10,18 @@ This may take up to an hour depending on how comfortable you are with the langua
 
 _All implementations of interfaces must be thread-safe unless specified otherwise._
 
-## Main storage
+## Storage
 
-The first step is to define you main storage. The main storage is where session-like data will be stored (sessions, signups, signins, user password resets, user password updates, user email address updates, and user deletion).
+The first step is to define you storage.
 
-The main storage is a key-value store that implements [`MainStorageInterface`](https://pkg.go.dev/github.com/faroedev/faroe#MainStorageInterface). This storage should be strongly consistent. Any writes/updates should be immediately visible to all subsequent reads. Beyond this consistency guarantee, no other requirements are imposed. You may use a traditional persistent database with backups or, if you're fine with users possible getting signed out, use a temporary storage like an in-memory store.
+It is a key-value store that implements [`StorageInterface`](https://pkg.go.dev/github.com/faroedev/faroe#StorageInterface). It should be strongly consistent. Any writes/updates should be immediately visible to all subsequent reads. Beyond this consistency guarantee, there are no other requirements. You may use a traditional persistent database with backups or use a temporary storage like an in-memory store.
 
 The entry value, counter, and optionally the expiration timestamp should be stored under each key. The counter is used to prevent race conditions. The expiration is just a hint. You may delete entries past its expiration to free up storage.
 
 ```go
-type MainStorageInterface interface {
+type StorageInterface interface {
 	Get(key string) ([]byte, int32, error)
-	Set(key string, value []byte, expiresAt time.Time) error
+	Add(key string, value []byte, expiresAt time.Time) error
 	Update(key string, value []byte, expiresAt time.Time, counter int32) error
 	Delete(key string) error
 }
@@ -29,45 +29,10 @@ type MainStorageInterface interface {
 
 Example implementations are available:
 
-- [MySQL with `database/sql`](https://code.faroe.dev/faroe-main-storage-sql-mysql)
-- [PostgreSQL with `database/sql`](https://code.faroe.dev/faroe-main-storage-sql-postgresql)
-- [SQLite with `database/sql`](https://code.faroe.dev/faroe-main-storage-sql-sqlite)
-- [Basic example with Go maps](https://code.faroe.dev/faroe-main-storage-map)
-
-## Cache storage
-
-The cache is an optional storage for storing sessions. Adding this will reduce the number of queries to your main storage.
-
-It implements [`CacheInterface`](https://pkg.go.dev/github.com/faroedev/faroe#CacheInterface). Unlike the main storage, it does not have to be strongly consistent. However, the TTL should be strictly enforced.
-
-An [example implementation using Go maps](https://code.faroe.dev/faroe-cache-map) is available.
-
-```go
-type CacheInterface interface {
-	Get(key string) ([]byte, error)
-	Set(key string, value []byte, ttl time.Duration) error
-	Delete(key string) error
-}
-```
-
-## Rate limit storage
-
-The rate limit storage implements [`RateLimitStorageInterface`](https://pkg.go.dev/github.com/faroedev/faroe#RateLimitStorageInterface). This storage is exclusively used for rate limiting. As with the main storage, your implementation should be strongly consistent.
-
-The entry value, ID, counter, and optionally the expiration timestamp should be stored under each key. The ID and counter is used to prevent race conditions. The expiration is just a hint. You may delete entries past its expiration.
-
-Consider using a fast, in-memory storage here.
-
-An [example implementation using Go maps](https://code.faroe.dev/faroe-rate-limit-storage-map) is available.
-
-```go
-type RateLimitStorageInterface interface {
-	Get(key string) ([]byte, string, int32, error)
-	Add(key string, value []byte, entryId string, expiresAt time.Time) error
-	Update(key string, value []byte, expiresAt time.Time, entryId string, counter int32) error
-	Delete(key string, entryId string, counter int32) error
-}
-```
+- [MySQL with `database/sql`](https://code.faroe.dev/faroe-storage-sql-mysql)
+- [PostgreSQL with `database/sql`](https://code.faroe.dev/faroe-storage-sql-postgresql)
+- [SQLite with `database/sql`](https://code.faroe.dev/faroe-storage-sql-sqlite)
+- [Go maps](https://code.faroe.dev/faroe-storage-map)
 
 ## User store
 
@@ -158,17 +123,13 @@ Storage entry keys are not globally namespaced. For example, an entry in the rat
 
 Create a new [`ServerStruct`](https://pkg.go.dev/github.com/faroedev/faroe#ServerStruct) with [`NewServer()`](https://pkg.go.dev/github.com/faroedev/faroe#NewServer).
 
-If you do not have a cache, pass [`EmptyCache`](https://pkg.go.dev/github.com/faroedev/faroe#EmptyCache) as the cache.
-
 You can provide multiple user password hashing algorithms if your users use different algorithms. The first one will be used for hashing new passwords.
 
 `maxConcurrentPasswordHashingProcesses` is the number of maximum CPU threads you want to dedicate to hashing passwords (user passwords and temporary passwords). Password hashing is expensive and will block the thread for the duration of the process.
 
 ```go
 server := faroe.NewServer(
-	mainStorage,
-	cache,
-	rateLimitStorage,
+	storage,
 	userStore,
 	errorLogger,
 	[]faroe.PasswordHashAlgorithmInterface{userPasswordHashAlgorithm},
