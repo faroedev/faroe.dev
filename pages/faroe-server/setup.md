@@ -31,6 +31,7 @@ Example implementations are available:
 
 - [MySQL with `database/sql`](https://code.faroe.dev/faroe-storage-sql-mysql)
 - [PostgreSQL with `database/sql`](https://code.faroe.dev/faroe-storage-sql-postgresql)
+- [Redis](https://code.faroe.dev/faroe-storage-redis)
 - [SQLite with `database/sql`](https://code.faroe.dev/faroe-storage-sql-sqlite)
 - [Go maps](https://code.faroe.dev/faroe-storage-map)
 
